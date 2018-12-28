@@ -15,3 +15,6 @@
   (let [model (->UserModel name age id language)]
     (if (s/valid? ::user-model model) model
         (throw (Exception. (str (s/explain ::user-model model)))))))
+
+(defn adult? [user]
+  (> (:age user) 18))
