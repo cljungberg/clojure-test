@@ -17,13 +17,25 @@
     (is (true? (um/adult? (um/get-user-model "Christina" 57 2 "clojure"))))
     (is (false? (um/adult? (um/get-user-model "Lisa" 17 2 "clojure"))))))
 
-(deftest user-adult-or-not-adult-fluent
-  (testing "Validate that Christina is an adult but Lisa is not, using fluent syntax"
+(deftest user-adult-or-not-adult-using-pointy-arrow
+  (testing "Validate that Christina is an adult but Lisa is not, using pointy arrow syntax"
     (is (true? (->> (um/get-user-model "Christina" 57 2 "clojure")
                     (um/adult?))))
     (is (false? (->> (um/get-user-model "Lisa" 17 2 "clojure")
                      (um/adult?))))))
 
+(deftest user-likes-clojure
+  (testing "Validate that Christina likes clojure"
+    (is (false? (->> (um/get-user-model "James" 40 2 "javasript")
+                     (um/language-fan?))))
+    (is (true? (->> (um/get-user-model "Christina" 57 2 "clojure")
+                    (um/language-fan?))))))
+
+(deftest user-likes-clojure-and-is-adult-fluent
+  (testing "Validate that Christina likes clojure and is adult"
+    (is (true? (->> (um/get-user-model "Christina" 57 2 "clojure")
+                    (um/adult?)
+                    (um/language-fan?))))))
 
 ; Run tests:
 ; (require 'test.user-model-test :reload-all)

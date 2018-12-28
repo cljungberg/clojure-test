@@ -18,3 +18,6 @@
 
 (defn adult? [user]
   (> (:age user) 18))
+
+(defn language-fan? [user]
+  (= "clojure" (:language user)))
