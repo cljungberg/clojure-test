@@ -1,0 +1,3 @@
+(require 'test.user-model-test :reload-all)
+(in-ns 'test.user-model-test)
+ (run-tests)
